@@ -97,4 +97,6 @@ class PhishingApi(Resource):
                 })
                 
         return {'predicciones': predictions_list}, 200
+
+app.run(debug=True, use_reloader=False, host='0.0.0.0', port=5000)
         
