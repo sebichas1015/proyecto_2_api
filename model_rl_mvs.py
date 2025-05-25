@@ -47,6 +47,9 @@ def get_wordnet_pos(tag):
 
 search = joblib.load(os.path.dirname(__file__) + '/rl_mvs_gnr.pkl')
 
+vectorizer = joblib.load(os.path.dirname(__file__) + '/vectr.pkl')
+
+
 app = Flask(__name__)
 api = Api(
     app,
@@ -108,8 +111,6 @@ class PhishingApi(Resource):
         df['text_combined'] = df['title']  + ' ' + df['plot']
 
         df['text_clean'] = df['text_combined'].apply(preprocess_text_full)
-
-        vectorizer = TfidfVectorizer(max_features=20000, ngram_range=(1, 3), min_df=5, max_df=0.8)
 
         X_test_dtm = vectorizer.transform(df['text_clean'])
 
