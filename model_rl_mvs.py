@@ -11,6 +11,10 @@ import sys
 import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords, wordnet
+from nltk.stem import WordNetLemmatizer
+from nltk import pos_tag
 import joblib
 from flask import Flask
 from flask_restx import Api, Resource, fields
