@@ -19,6 +19,14 @@ import joblib
 from flask import Flask
 from flask_restx import Api, Resource, fields
 
+import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('averaged_perceptron_tagger_eng')
+
 search = joblib.load(os.path.dirname(__file__) + '/rl_mvs_gnr.pkl')
 
 app = Flask(__name__)
