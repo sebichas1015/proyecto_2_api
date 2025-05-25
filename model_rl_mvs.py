@@ -111,7 +111,9 @@ class PhishingApi(Resource):
 
         vectorizer = TfidfVectorizer(max_features=20000, ngram_range=(1, 3), min_df=5, max_df=0.8)
 
-        result_df = search.predict_proba(df_dtm)
+        X_test_dtm = vectorizer.transform(df['text_clean'])
+
+        result_df = search.predict_proba(X_test_dtm)
 
         cols = ['p_Action', 'p_Adventure', 'p_Animation', 'p_Biography', 'p_Comedy', 'p_Crime', 'p_Documentary', 'p_Drama', 'p_Family',
         'p_Fantasy', 'p_Film-Noir', 'p_History', 'p_Horror', 'p_Music', 'p_Musical', 'p_Mystery', 'p_News', 'p_Romance',
