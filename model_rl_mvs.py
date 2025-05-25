@@ -44,6 +44,7 @@ def get_wordnet_pos(tag):
     else:
         return wordnet.NOUN
 
+
 search = joblib.load(os.path.dirname(__file__) + '/rl_mvs_gnr.pkl')
 
 app = Flask(__name__)
@@ -72,6 +73,7 @@ prediction_model = api.model('Prediccion', {
 resource_fields = api.model('Resultado', {
     'predicciones': fields.List(fields.Nested(prediction_model))
 })
+
 
 @ns.route('/')
 class PhishingApi(Resource):
@@ -106,6 +108,8 @@ class PhishingApi(Resource):
         df['text_combined'] = df['title']  + ' ' + df['plot']
 
         df['text_clean'] = df['text_combined'].apply(preprocess_text_full)
+
+        vectorizer = TfidfVectorizer(max_features=20000, ngram_range=(1, 3), min_df=5, max_df=0.8)
 
         df_dtm = vectorizer.transform(df['text_clean'])
 
