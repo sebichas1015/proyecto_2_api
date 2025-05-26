@@ -54,13 +54,13 @@ app = Flask(__name__)
 api = Api(
     app,
     version='1.0',
-    title='Phishing Prediction API',
+    title='Movies Genres Prediction API',
     description='API para predicción con múltiples features'
 )
 
-ns = api.namespace('predict', description='Clasificador de phishing')
+ns = api.namespace('predict', description='Clasificador de generos')
 
-# Configurar los 5 parámetros de entrada
+# Configurar los parámetros de entrada
 parser = ns.parser()
 parser.add_argument('year', type=int, required=True, help='year', location='args')
 parser.add_argument('title', type=str, required=True, help='title', location='args')
