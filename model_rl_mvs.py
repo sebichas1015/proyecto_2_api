@@ -60,7 +60,7 @@ api = Api(
 
 ns = api.namespace('predict', description='Clasificador de generos')
 
-# Configurar los parámetros de entrada
+# Configurar los parametros de entrada
 parser = ns.parser()
 parser.add_argument('year', type=int, required=True, help='year', location='args')
 parser.add_argument('title', type=str, required=True, help='title', location='args')
@@ -79,7 +79,7 @@ resource_fields = api.model('Resultado', {
 
 
 @ns.route('/')
-class PhishingApi(Resource):
+class genrmoviesApi(Resource):
     @ns.doc(parser=parser)
     @ns.marshal_with(resource_fields)
     def get(self):
